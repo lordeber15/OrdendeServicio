@@ -1,0 +1,176 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    margin: 2% 15%;
+    padding: 2%;
+    border-radius: 5px;
+    -webkit-box-shadow: 1px 2px 4px 2px rgba(0,0,0,0.4);
+    -moz-box-shadow: 1px 2px 4px 2px rgba(0,0,0,0.4);
+    box-shadow: 1px 2px 4px 2px rgba(0,0,0,0.4);
+}
+.titlenegocio{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    font-weight: 900;
+    font-size: 24px;
+}
+.logodial{
+    width: 15%;
+    padding: 1%;
+}
+.datos{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 10px 10px;
+    padding: 3% 0%;
+
+}
+.title{
+    display: flex;
+    justify-content: center;
+    color: var(--text-base);
+}
+
+.formatosview{
+    display: flex;
+    justify-content: space-between;
+    padding: 2% 0%;
+}
+.totales{
+    display: flex;
+    align-items: end;
+    flex-direction: column;
+    gap: 5px;
+}
+.acabados{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 2%;
+    padding: 0% 2%;
+    border: 1px solid rgb(133, 133, 133);
+    border-radius: 5px;
+    margin: 0% 2%;
+}
+.acabadosytotal{
+    display: flex;
+    flex-direction: column;
+    padding: 1%;
+    width: fit-content;
+    border-radius: 5px;
+    -webkit-box-shadow: 1px 2px 4px 2px rgba(0,0,0,0.4);
+    -moz-box-shadow: 1px 2px 4px 2px rgba(0,0,0,0.4);
+    box-shadow: 1px 2px 4px 2px rgba(0,0,0,0.4);
+}
+.orientacion{
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    
+    padding: 0.5% 1.5%;
+}
+.horizontal{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.vertical{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.titlenumeracion{
+    display: flex;
+    justify-content: center;
+    padding: 1%;
+}
+.al{
+    font-size: 20px;
+    font-weight: 700s;
+    display: flex;
+    align-items: center;
+}
+.titleAcabado{
+    display: flex;
+    justify-content: center;
+    
+    border-radius: 10px;
+    margin: 1% 0%;
+}
+.numeracion{
+    
+    border-radius: 10px;
+}
+.numerico{
+    display: flex;
+    align-items: center;
+    border-radius: 10px;
+    display: flex;
+    padding: 1% 2%;
+    gap: 2%;
+}
+.adicional{
+    display: flex;
+    flex-direction: column;
+    padding: 1% 2%;
+}
+.texttitle{
+    font-weight: 800;
+    font-size: 11px;
+    margin: 1% 0%;
+} 
+.textarea{
+    resize: none;
+    height: 50px;
+    border-radius: 5px;
+    padding: 1%;
+    font-family: Arial, Helvetica, sans-serif; 
+
+}
+.titleespeciales{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    padding: 1%;
+}
+.especiales{
+    display: flex;
+    flex-direction: column;
+    flex-direction: row;
+    padding: 1%;
+    border-radius: 5px;
+    -webkit-box-shadow: 1px 2px 4px 2px rgba(0,0,0,0.4);
+    -moz-box-shadow: 1px 2px 4px 2px rgba(0,0,0,0.4);
+    box-shadow: 1px 2px 4px 2px rgba(0,0,0,0.4);
+    margin-top: 1%;
+}
+.textareaespecial{
+    resize: none;
+    display: flex;
+    flex-direction: column;
+    flex-direction: row;
+    width: 90%;
+    padding: 1%;
+    height: 40px;
+    margin-right: 2%;
+    border-radius: 5px;
+}
+.botones{
+    display: flex;
+    justify-content: flex-end;
+    margin: 1.5% 0%;
+    gap: 10px;
+}
+.containertotales{
+
+    margin: 2% 0%;
+    display: flex;
+    justify-content: space-between;
+}

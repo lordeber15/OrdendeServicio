@@ -1,0 +1,23 @@
+.container{
+    width: 30%;
+    height: 160px;
+    -webkit-box-shadow: 1px 1px 4px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 1px 1px 4px 0px rgba(0,0,0,0.75);
+    box-shadow: 1px 1px 4px 0px rgba(0,0,0,0.75);
+    border-radius: 5%;
+}
+.container a {
+    text-decoration: none;
+}
+
+.containertext{
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.text{
+    font-size: 35px;
+    color: var(--text-base);
+}
