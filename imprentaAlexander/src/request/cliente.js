@@ -6,6 +6,6 @@ export const getClientes = async () => {
   const res = await clientesApi.get("clientes");
   return res.data;
 };
-export const createProduct = (cliente) => {
+export const createCliente = (cliente) => {
   clientesApi.post("/clientes", cliente);
 };

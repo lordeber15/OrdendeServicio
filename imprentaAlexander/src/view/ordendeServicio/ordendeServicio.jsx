@@ -18,11 +18,24 @@ import SaveIcon from "@mui/icons-material/Save";
 import PrintIcon from "@mui/icons-material/Print";
 import logoIzquierda from "../../assets/logodial.svg";
 import { useState } from "react";
+import { useQuery } from "@tanstack/react-query";
+import CircularProgress from "@mui/material/CircularProgress";
+import { getOrden } from "../../request/orden";
+import Select from "@mui/material/Select";
+import MenuItem from "@mui/material/MenuItem";
+import InputLabel from "@mui/material/InputLabel";
+import FormControl from "@mui/material/FormControl";
 
 export default function OrdendeServicio() {
   const [isChecked, setIsChecked] = useState(false);
   const [inputValue, setInputValue] = useState("");
   const [inputValue1, setInputValue1] = useState("");
+  const [status, setStatus] = useState("");
+
+  const handleChangeStatus = (event) => {
+    setStatus(event.target.value);
+  };
+
   const handleCheckboxChange = () => {
     setIsChecked(!isChecked);
   };
@@ -42,6 +55,18 @@ export default function OrdendeServicio() {
       setInputValue1(value);
     }
   };
+  const { isLoading, data, isError, error } = useQuery({
+    queryKey: ["ordendeservicio"],
+    queryFn: getOrden,
+  });
+  console.log(data);
+  if (isLoading)
+    return (
+      <div className={style.loader}>
+        <CircularProgress />
+      </div>
+    );
+  else if (isError) return console.log(error.message);
   return (
     <div className={style.container}>
       <div className={style.titlenegocio}>
@@ -103,18 +128,20 @@ export default function OrdendeServicio() {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {rows.map((row) => (
+                {data.map((row) => (
                   <TableRow
-                    key={row.name}
+                    hover
+                    key={row.iddetalleorden}
                     sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                   >
                     <TableCell component="th" scope="row">
-                      {row.name}
+                      {row.cantidad}
                     </TableCell>
-                    <TableCell align="right">{row.calories}</TableCell>
-                    <TableCell align="right">{row.fat}</TableCell>
-                    <TableCell align="right">{row.carbs}</TableCell>
-                    <TableCell align="right">{row.protein}</TableCell>
+                    <TableCell align="right">{row.descripcion}</TableCell>
+                    <TableCell align="right">{row.precio}</TableCell>
+                    <TableCell align="right">
+                      {row.cantidad * row.precio}
+                    </TableCell>
                   </TableRow>
                 ))}
               </TableBody>
@@ -145,25 +172,33 @@ export default function OrdendeServicio() {
                     <TableCell align="center">FORMATOS</TableCell>
                     <TableCell align="center">SERIE</TableCell>
                     <TableCell align="center">TAMAÑO</TableCell>
-                    <TableCell align="right">PAPEL</TableCell>
-                    <TableCell align="right">COLOR</TableCell>
-                    <TableCell align="right">P. UNIT</TableCell>
-                    <TableCell align="right">IMPORTE</TableCell>
+                    <TableCell align="center">PAPEL</TableCell>
+                    <TableCell align="center">COLOR</TableCell>
+                    <TableCell align="center">P. UNIT</TableCell>
+                    <TableCell align="center">IMPORTE</TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {rows.map((row) => (
+                  {data.map((row) => (
                     <TableRow
-                      key={row.name}
+                      hover
+                      key={row.iddetalleorden}
                       sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                     >
                       <TableCell component="th" scope="row">
-                        {row.name}
+                        {row.cantidadRUC}
                       </TableCell>
-                      <TableCell align="left">{row.calories}</TableCell>
-                      <TableCell align="right">{row.fat}</TableCell>
-                      <TableCell align="right">{row.carbs}</TableCell>
-                      <TableCell align="right">{row.protein}</TableCell>
+                      <TableCell align="center">{row.descripcionRUC}</TableCell>
+                      <TableCell align="center">{row.serieRUC}</TableCell>
+                      <TableCell align="center">{row.tamanoRUC}</TableCell>
+                      <TableCell align="center">{row.papelRUC}</TableCell>
+                      <TableCell align="center">{row.colorRUC}</TableCell>
+                      <TableCell align="center">
+                        {row.precioUnitarioRUC}
+                      </TableCell>
+                      <TableCell align="center">
+                        {row.cantidadRUC * row.precioUnitarioRUC}
+                      </TableCell>
                     </TableRow>
                   ))}
                 </TableBody>
@@ -234,6 +269,21 @@ export default function OrdendeServicio() {
           <TextField id="outlined-basic" label="Sub Total" variant="outlined" />
           <TextField id="outlined-basic" label="IGV" variant="outlined" />
           <TextField id="outlined-basic" label="Total" variant="outlined" />
+          <FormControl fullWidth>
+            <InputLabel id="estado">Estado</InputLabel>
+            <Select
+              labelId="estado"
+              id="demo-simple-select"
+              value={status}
+              label="Estado"
+              onChange={handleChangeStatus}
+            >
+              <MenuItem value={"Recibido"}>Recibido</MenuItem>
+              <MenuItem value={"Proceso"}>Proceso</MenuItem>
+              <MenuItem value={"Terminado"}>Terminado</MenuItem>
+              <MenuItem value={"Entregado"}>Entregado</MenuItem>
+            </Select>
+          </FormControl>
         </div>
       </div>
 
@@ -261,12 +311,3 @@ export default function OrdendeServicio() {
     </div>
   );
 }
-function createData(name, calories, fat, carbs, protein) {
-  return { name, calories, fat, carbs, protein };
-}
-
-const rows = [
-  createData("Frozen yoghurt", 159, 6.0, 24),
-  createData("Ice cream sandwich", 237, 9.0, 37),
-  createData("Eclair", 262, 16.0, 2),
-];

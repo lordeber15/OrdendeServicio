@@ -18,16 +18,17 @@ import DialogTitle from "@mui/material/DialogTitle";
 import Box from "@mui/material/Box";
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { getClientes } from "../../request/cliente";
+import { createCliente, getClientes } from "../../request/cliente";
 import CircularProgress from "@mui/material/CircularProgress";
-import { useMutation } from "@tanstack/react-query";
-import { createProduct } from "../../request/cliente.js";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 export default function Clientes() {
+  const queryClient = useQueryClient();
   const addClienteMutation = useMutation({
-    mutationFn: createProduct,
+    mutationFn: createCliente,
     onSuccess: () => {
       console.log("Cliente Agregado con exito");
+      queryClient.invalidateQueries("clientes");
     },
   });
   const [open, setOpen] = useState(false);
@@ -178,6 +179,7 @@ export default function Clientes() {
           <TableBody>
             {data.map((row) => (
               <TableRow
+                hover
                 key={row.idcliente}
                 onClick={() => {
                   console.log(row.idcliente);

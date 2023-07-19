@@ -32,6 +32,7 @@ const createOrden = async (req, res) => {
       cantidad,
       precio,
       descuento,
+      descripcion,
       cantidadRUC,
       descripcionRUC,
       serieRUC,
@@ -52,6 +53,7 @@ const createOrden = async (req, res) => {
       cantidad,
       precio,
       descuento,
+      descripcion,
       cantidadRUC,
       descripcionRUC,
       serieRUC,
@@ -79,6 +81,7 @@ const updateDetallesOrden = async (req, res) => {
     const { iddetalleorden } = req.params;
     const {
       cantidad,
+      descripcion,
       precio,
       descuento,
       cantidadRUC,
@@ -99,6 +102,7 @@ const updateDetallesOrden = async (req, res) => {
     } = req.body;
     const detalleOrdenupdate = await DetalleOrden.findByPk(iddetalleorden);
     detalleOrdenupdate.cantidad = cantidad;
+    detalleOrdenupdate.descripcion = descripcion;
     detalleOrdenupdate.precio = precio;
     detalleOrdenupdate.descuento = descuento;
     detalleOrdenupdate.cantidadRUC = cantidadRUC;

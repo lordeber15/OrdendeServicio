@@ -53,6 +53,9 @@ const DetalleOrden = sequelize.define("DetalleOrden", {
     type: DataTypes.INTEGER,
     allowNull: false,
   },
+  descripcion: {
+    type: DataTypes.STRING,
+  },
   precio: {
     type: DataTypes.DECIMAL,
     allowNull: false,
